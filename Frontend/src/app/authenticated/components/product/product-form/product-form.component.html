@@ -55,7 +55,7 @@
                   [ngClass]="{'is-invalid': mainForm.get('categoria')?.touched && !mainForm.get('categoria')?.valid, 'is-valid':  mainForm.get('categoria')?.touched && mainForm.get('categoria')?.valid}">
                   <option value="" selected>Seleccione una opción</option>
                   @for (item of categoryCombo$; track item) {
-                  <option [ngValue]="item?.name">
+                  <option [ngValue]="item?.id">
                     {{item?.name}}</option>
                   }
                 </select>

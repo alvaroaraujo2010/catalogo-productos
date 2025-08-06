@@ -74,7 +74,7 @@ export class ApiService<T> implements ApiServiceInterface<T> {
    */
   update$(action: DataActionModel<T>): Observable<T> {
     const endPoint = this.url + action.url;
-    return this._http.put<T>(endPoint, action.payload).pipe(
+    return this._http.patch<T>(endPoint, action.payload).pipe(
       map((data) => {
         if (data) {
           return data;

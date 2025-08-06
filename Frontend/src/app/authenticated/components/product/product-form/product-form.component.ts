@@ -26,9 +26,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   private _finisher$ = new Subject<void>();
 
   public categoryCombo$: CategoryModel[] = [
-    { id: 1, name: "01" },
-    { id: 2, name: "02" },
-    { id: 3, name: "03" }
+    { id: "1", name: "01" },
+    { id: "2", name: "02" },
+    { id: "3", name: "03" }
   ];
 
   public mainForm: UntypedFormGroup;
