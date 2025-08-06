@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: "https://api.escuelajs.co/api/v1/",
+  apiUrl: "http://localhost:3000/",
   apiAuthUrl: "https://dummyjson.com/",
-  key: "EAWAutUZ^MPV4vLRJ9IY91^t$*RIhErm",
+  key: "123456789ABCDEF",
 };

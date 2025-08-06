@@ -55,10 +55,12 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         map(([items, mainForm]) => {
           console.log("items", items);
           try {
-            return {
-              item: items.find((item: ProductModel) => item.id === parseInt(this.id)),
+            const itemTemp = {
+              item: items.find((reg: ProductModel) => reg.id === this.id),
               mainForm
             };
+
+            return itemTemp;
           } catch (error) {
             console.error(error);
             return {
@@ -110,10 +112,10 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   initForm(): UntypedFormGroup {
     return this._fb.group({
       id: null,
-      title: ["", [Validators.required]],
-      description: ["", [Validators.required]],
-      price: [null, [Validators.required]],
-      category: ["", [Validators.required]]
+      nombre: ["", [Validators.required]],
+      descripcion: ["", [Validators.required]],
+      precio: [null, [Validators.required]],
+      categoria: ["", [Validators.required]]
     });
   }
 
@@ -122,7 +124,12 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       ...this.mainForm.getRawValue()
     };
     if (this.mainForm.valid) {
-      this._productFacadeService.create(this.dataForm);
+      if(this.id){
+        this._productFacadeService.update(this.dataForm);
+      }
+      else{
+        this._productFacadeService.create(this.dataForm);
+      }
     }
   }
 

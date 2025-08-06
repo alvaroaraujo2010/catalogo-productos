@@ -22,17 +22,24 @@ export class Product {
   @Prop()
   categoria?: string;
 
+  // ✅ ID expuesto como 'id' para Swagger (opcional)
   @ApiProperty({ example: '6892b26b2630e106661c7f86', description: 'ID del producto' })
-  _id: string;
+  id: string; // No uses _id en el modelo; será generado desde el schema
 
   @ApiProperty({ example: '2025-08-06T01:39:55.730Z', description: 'Fecha de creación' })
   createdAt: Date;
 
   @ApiProperty({ example: '2025-08-06T01:39:55.730Z', description: 'Fecha de última actualización' })
   updatedAt: Date;
-
-  @ApiProperty({ example: 0, description: 'Versión del documento en MongoDB' })
-  __v: number;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
+
+ProductSchema.set('toJSON', {
+  virtuals: true,
+  versionKey: false,
+  transform: (_, ret: any) => {
+    ret.id = ret._id;
+    delete ret._id;
+  },
+});

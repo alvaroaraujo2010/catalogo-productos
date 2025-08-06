@@ -5,7 +5,7 @@ import * as actions from "@store/configuration/actions/product.actions";
 
 /** Se declara la interface del reducer */
 export interface State extends EntityState<ProductModel> {
-  selectCurrentId: number | null;
+  selectCurrentId: string | null;
   loading: boolean;
 }
 /** El adapter es como el puente entre el estore y el reducer */

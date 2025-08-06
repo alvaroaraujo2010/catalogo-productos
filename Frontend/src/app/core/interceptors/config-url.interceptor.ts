@@ -19,7 +19,8 @@ export class ConfiUriInterceptor<T> implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (request.url.indexOf(environment.apiAuthUrl) < -1) {
+    if (request.url.indexOf(environment.apiAuthUrl) < -1 || 
+          request.url.indexOf(environment.apiUrl) > -1) {
       return this.getTokenConfig(next, request).pipe(
         catchError((error: HttpErrorResponse) => {
           if (error && error.status === 403) {
@@ -48,10 +49,12 @@ export class ConfiUriInterceptor<T> implements HttpInterceptor {
     token: string,
     request: HttpRequest<any>
   ): HttpRequest<any> {
+    console.log("request ", request);
+    console.log("token ", token);
     const headers: { [name: string]: string | string[] } = {
       ["Content-Type"]: "application/json;odata=nometadata",
       ["Accept"]: "application/json;odata=nometadata",
-      ["Authorization"]: "Bearer " + token,
+      ["Authorization"]: "Bearer " + '123456789ABCDEF',
       ["X-Content-Type-Options"]: "nosniff",
       ["X-Frame-Options"]: "deny",
     };

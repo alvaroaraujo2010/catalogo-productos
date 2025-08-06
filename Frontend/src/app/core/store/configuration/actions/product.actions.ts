@@ -73,17 +73,17 @@ export const upsertMany = createAction(
 /** removeOne: acepta un único valor de ID de entidad y elimina la entidad con ese ID, si existe. */
 export const removeOne = createAction(
   "[Product/API] removeOne Product",
-  props<{ id: number }>()
+  props<{ id: string }>()
 );
 /** removeMany: acepta una matriz de valores de ID de entidad y elimina cada entidad con esos ID, si existen. */
 export const removeMany = createAction(
   "[Product/API] removeMany Products",
-  props<{ ids: number[] }>()
+  props<{ ids: string[] }>()
 );
 /** Esta acción permite setear el registro actual a traves del identificador */
 export const setCurrentItemId = createAction(
   "[Product/API] setCurrentItemId Product",
-  props<{ id: number }>()
+  props<{ id: string }>()
 );
 /** Esta acción permite resetear el registro actual del store */
 export const resetSelected = createAction(

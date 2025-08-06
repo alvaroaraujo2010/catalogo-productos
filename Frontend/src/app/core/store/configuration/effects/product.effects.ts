@@ -71,6 +71,25 @@ export class ProductEffects {
   );
 
   /**
+   * Efecto que escucha la acción de crear nuevos registros de la entidad
+   */
+  update$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(actions.updateApi),
+      switchMap((params) =>
+        this.apiService.update$(params.props).pipe(
+          switchMap((response: ProductModel) => {
+            const item = response;
+            const message = "Registro actualizado exitosamente";
+            return [actions.upsertOne({ item }), notificationActions.setMessage({ message })];
+          }),
+          catchError((error) => of(notificationActions.setError({ error }), actions.resetLoading()))
+        )
+      )
+    )
+  );
+
+  /**
    * Efecto que escucha la acción de eliminar un registro de la entidad
    */
   delete$ = createEffect(() =>

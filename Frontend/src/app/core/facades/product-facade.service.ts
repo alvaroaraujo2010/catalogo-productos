@@ -65,6 +65,7 @@ export class ProductFacadeService
       payload,
     };
 
+    console.log("Guardar: ", props);
     const action = actions.createApi({
       props,
     });
@@ -81,6 +82,7 @@ export class ProductFacadeService
       payload,
     };
 
+    console.log("Actualizar: ", props);
     const action = actions.updateApi({
       props,
     });
